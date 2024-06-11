@@ -48,10 +48,10 @@ export default function Contact() {
                                 </div>
                             </div>
                             <h2 className="text-3xl font-bold tracking-tight text-white flex items-center">
-                                poke me <FaHandPointRight size={30} className="ml-3" />
+                                message me <FaHandPointRight size={30} className="ml-3" />
                             </h2>
                             <p className="mt-6 text-lg leading-8 text-gray-300">
-                                interested in collaborating? feel free to reach out to me.
+                                feel free to reach out
                             </p>
                             <dl className="mt-10 space-y-4 text-base leading-7 text-gray-300">
                                 <div className="flex gap-x-4">
@@ -79,7 +79,7 @@ export default function Contact() {
                             </dl>
                         </div>
                     </div>
-                    <form action="#" method="POST" className="px-6 pb-24 pt-20 sm:pb-32 lg:px-8 lg:py-48">
+                    <form action="mailto:hpv8hf@virginia.edu" method="POST" className="px-6 pb-24 pt-20 sm:pb-32 lg:px-8 lg:py-48">
                         <div className="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
                             <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                                 <div>

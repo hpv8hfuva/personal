@@ -23,3 +23,11 @@ yarn-debug.log*
 yarn-error.log*
 
 backend/server/postgres/alembic/database/.db
+
+# Python
+__pycache__/
+
+
+# package files
+package-lock.json
+package.json
