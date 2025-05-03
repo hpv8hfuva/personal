@@ -1,7 +1,8 @@
 import Navbar from './components/navbar'
 import Footer from './components/footer'
+import { useState, useMemo } from 'react'
 
-const books = [
+const cachedBooks = [
     { status: 'not started', title: 'Foundations of Python Network Programming: The comprehensive guide to building network applications with Python', subject: 'Python', notes: 'Member', link: '#' },
     { status: 'not started', title: 'Learning Python 4th Edition', subject: 'Python', notes: 'Member', link: '#' },
     { status: 'not started', title: 'Python for Data Analysis: Data Wrangling with Pandas, NumPy, and IPython', subject: 'Python', notes: 'Member', link: '#' },
@@ -54,6 +55,84 @@ const books = [
 
 
 export default function Bookshelf() {
+    const statusOptions = ['not started', 'in progress', 'finished']
+    const [books, setBooks] = useState(cachedBooks)
+
+    const [sortField, setSortField] = useState('title')
+    const [sortDirection, setSortDirection] = useState('asc')
+
+    // Get status badge styles based on the status
+    const getStatusBadgeStyle = (status) => {
+        switch (status) {
+            case 'not started':
+                return 'bg-gray-500'
+            case 'in progress':
+                return 'bg-blue-500'
+            case 'finished':
+                return 'bg-green-500'
+            default:
+                return 'bg-gray-500'
+        }
+    }
+
+    // Function to toggle the status of a book
+    const toggleStatus = (index) => {
+        const updatedBooks = [...books]
+        const currentStatus = updatedBooks[index].status
+        const currentStatusIndex = statusOptions.indexOf(currentStatus)
+
+        // Move to the next status in the cycle, or back to the first if at the end
+        const nextStatusIndex = (currentStatusIndex + 1) % statusOptions.length
+        updatedBooks[index].status = statusOptions[nextStatusIndex]
+
+        setBooks(updatedBooks)
+    }
+
+    // Sort books based on current sort field and direction
+    const sortedBooks = useMemo(() => {
+        const booksToSort = [...books]
+
+        return booksToSort.sort((a, b) => {
+            let aValue = a[sortField]
+            let bValue = b[sortField]
+
+            // Handle case-insensitive string comparison
+            if (typeof aValue === 'string' && typeof bValue === 'string') {
+                aValue = aValue.toLowerCase()
+                bValue = bValue.toLowerCase()
+            }
+
+            // Special handling for status field to sort by progress stage rather than alphabetically
+            if (sortField === 'status') {
+                const aIndex = statusOptions.indexOf(a.status)
+                const bIndex = statusOptions.indexOf(b.status)
+                return sortDirection === 'asc' ? aIndex - bIndex : bIndex - aIndex
+            }
+
+            if (aValue < bValue) return sortDirection === 'asc' ? -1 : 1
+            if (aValue > bValue) return sortDirection === 'asc' ? 1 : -1
+            return 0
+        })
+    }, [books, sortField, sortDirection])
+
+    // Handle sort change
+    const handleSortChange = (field) => {
+        if (field === sortField) {
+            // If clicking the same field, toggle direction
+            setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc')
+        } else {
+            // If clicking a different field, set it as the new sort field and reset to ascending
+            setSortField(field)
+            setSortDirection('asc')
+        }
+    }
+
+    // Get sort indicator arrow
+    const getSortIndicator = (field) => {
+        if (sortField !== field) return null
+        return sortDirection === 'asc' ? ' ↑' : ' ↓'
+    }
+
     return (
         <>
             <Navbar />
@@ -83,14 +162,26 @@ export default function Bookshelf() {
                                         <table className="min-w-full divide-y divide-gray-700">
                                             <thead>
                                                 <tr>
-                                                    <th scope="col" className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-white sm:pl-0">
-                                                        status
+                                                    <th
+                                                        scope="col"
+                                                        className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-white sm:pl-0 cursor-pointer hover:text-gray-300"
+                                                        onClick={() => handleSortChange('status')}
+                                                    >
+                                                        status{getSortIndicator('status')}
                                                     </th>
-                                                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
-                                                        title
+                                                    <th
+                                                        scope="col"
+                                                        className="px-3 py-3.5 text-left text-sm font-semibold text-white cursor-pointer hover:text-gray-300"
+                                                        onClick={() => handleSortChange('title')}
+                                                    >
+                                                        title{getSortIndicator('title')}
                                                     </th>
-                                                    <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
-                                                        subject
+                                                    <th
+                                                        scope="col"
+                                                        className="px-3 py-3.5 text-left text-sm font-semibold text-white cursor-pointer hover:text-gray-300"
+                                                        onClick={() => handleSortChange('subject')}
+                                                    >
+                                                        subj{getSortIndicator('subject')}
                                                     </th>
                                                     <th scope="col" className="px-3 py-3.5 text-left text-sm font-semibold text-white">
                                                         notes
@@ -101,10 +192,15 @@ export default function Bookshelf() {
                                                 </tr>
                                             </thead>
                                             <tbody className="divide-y divide-gray-800">
-                                                {books.map((book, index) => (
+                                                {sortedBooks.map((book, index) => (
                                                     <tr key={index}>
                                                         <td className="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-white sm:pl-0">
-                                                            {book.status}
+                                                            <button
+                                                                onClick={() => toggleStatus(index)}
+                                                                className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${getStatusBadgeStyle(book.status)} text-white cursor-pointer hover:opacity-80`}
+                                                            >
+                                                                {book.status}
+                                                            </button>
                                                         </td>
                                                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{book.title}</td>
                                                         <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-300">{book.subject}</td>

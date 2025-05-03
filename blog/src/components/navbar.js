@@ -43,19 +43,18 @@ export default function Navbar() {
                                 <li class="mr-2">
                                     <a class="inline-block text-gray-200 no-underline hover:text-green-400  py-2 px-2" href="/create">create</a>
                                 </li>
+                                <li class="mr-2">
+                                    <a download="../assets/HUNTER_VACCARO_RESUME.pdf" class="inline-block text-gray-200 no-underline hover:text-green-400  py-2 px-2" href="/resume.pdf">resume</a>
+                                </li>
                             </ul>
                         </div>
 
-
                         <div class="flex w-1/2 justify-end content-center">
-                            <a class="inline-block text-gray-500 no-underline hover:text-white hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 avatar" data-tippy-content="@github_handle" href="https://github.com/hpv8hfuva">
-                                <FaGithub size="20" color="black" />
+                            <a class="inline-block no-underline hover:text-white hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 avatar" data-tippy-content="@github_handle" href="https://github.com/hpv8hfuva">
+                                <FaGithub class="bg-gray-100 rounded-sm" size="20" color="black" />
                             </a>
-                            <a class="inline-block text-gray-500 no-underline hover:text-white hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 avatar" data-tippy-content="@linkedin_handle" href="https://www.linkedin.com/in/hunter-vaccaro/">
-                                <FaLinkedin size="20" color="#0A66C2" />
-                            </a>
-                            <a class="inline-block text-gray-500 no-underline hover:text-white hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 avatar" data-tippy-content="@twitter_handle" href="https://x.com/retnuhbot/">
-                                <FaXTwitter size="20" color="black" />
+                            <a class="inline-block   no-underline hover:text-white hover:text-underline text-center h-10 p-2 md:h-auto md:p-4 avatar" data-tippy-content="@linkedin_handle" href="https://www.linkedin.com/in/hunter-vaccaro/">
+                                <FaLinkedin class="bg-gray-100 rounded-sm" size="20" color="#0A66C2" />
                             </a>
                         </div>
 
