@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Navbar from './components/navbar';
 import Footer from './components/footer';
 import { Radio, RadioGroup } from '@headlessui/react'
-import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
+import { PhotoIcon } from '@heroicons/react/24/solid'
 import ReactMarkdown from 'react-markdown';
 import 'github-markdown-css/github-markdown.css';
 
@@ -18,11 +18,7 @@ function classNames(...classes) {
 export default function CreateBlog() {
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
-    const [authorPhoto, setAuthorPhoto] = useState('');
-    const [coverPhoto, setCoverPhoto] = useState(null);
     const [description, setDescription] = useState('');
-    const [category, setCategory] = useState('');
-    const [readTime, setReadTime] = useState(0);
     const [name, setName] = useState('');
     const [password, setPassword] = useState('');
     const [display, setDisplay] = useState(displays[0]);
@@ -62,11 +58,7 @@ export default function CreateBlog() {
     const reset = () => {
         setTitle('');
         setContent('');
-        setAuthorPhoto('');
-        setCoverPhoto(null);
         setDescription('');
-        setCategory('');
-        setReadTime(0);
         setName('');
         setPassword('');
     }

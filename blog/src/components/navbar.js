@@ -10,8 +10,7 @@ export default function Navbar() {
         const index = Math.floor(Math.random() * images.length);
         return images[index];
     };
-    const randomImage = getRandomImage();
-    // backgroundImage: `url(${randomImage})`
+
     return (
         <>
             <div class="w-full m-0 p-0 bg-cover bg-bottom bg-gray-900" style={{ height: "60vh", maxHeight: "300px" }}>

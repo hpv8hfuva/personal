@@ -55,7 +55,7 @@ const cachedBooks = [
 
 
 export default function Bookshelf() {
-    const statusOptions = ['not started', 'in progress', 'finished']
+    const statusOptions = useMemo(() => ['not started', 'in progress', 'finished'], [])
     const [books, setBooks] = useState(cachedBooks)
 
     const [sortField, setSortField] = useState('title')
