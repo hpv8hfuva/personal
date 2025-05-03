@@ -2,14 +2,8 @@ import React from 'react';
 import { FaLinkedin } from 'react-icons/fa';
 import { FaGithub } from 'react-icons/fa';
 
-const importAll = (requireContext) => requireContext.keys().map(requireContext);
-const images = importAll(require.context('../assets/bg', false, /\.(png|jpe?g|svg)$/));
 
 export default function Navbar() {
-    const getRandomImage = () => {
-        const index = Math.floor(Math.random() * images.length);
-        return images[index];
-    };
 
     return (
         <>
