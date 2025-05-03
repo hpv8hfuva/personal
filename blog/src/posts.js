@@ -76,7 +76,7 @@ export default function Posts() {
                                             </div>
                                         </div>)
                                     }
-                                    {(index % 7 == 3 || index % 7 == 6) &&
+                                    {(index % 7 === 3 || index % 7 === 6) &&
                                         (< div class="w-full md:w-1/3 p-4 flex flex-col flex-grow flex-shrink">
                                             <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
                                                 <a href="#" class="flex flex-wrap no-underline hover:no-underline">
@@ -96,7 +96,7 @@ export default function Posts() {
                                             </div>
                                         </div>)
                                     }
-                                    {(index % 7 == 4 || index % 7 == 5) &&
+                                    {(index % 7 === 4 || index % 7 === 5) &&
                                         (< div class="w-full md:w-2/3 p-4 flex flex-col flex-grow flex-shrink">
                                             <div class="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow-lg">
                                                 <a href="#" class="flex flex-wrap no-underline hover:no-underline">

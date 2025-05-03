@@ -113,7 +113,7 @@ export default function Bookshelf() {
             if (aValue > bValue) return sortDirection === 'asc' ? 1 : -1
             return 0
         })
-    }, [books, sortField, sortDirection])
+    }, [books, sortField, sortDirection, statusOptions])
 
     // Handle sort change
     const handleSortChange = (field) => {

@@ -1,4 +1,4 @@
-import { BuildingOffice2Icon, EnvelopeIcon, PhoneIcon } from '@heroicons/react/24/outline'
+import { EnvelopeIcon } from '@heroicons/react/24/outline'
 import Navbar from './components/navbar'
 import Footer from './components/footer'
 import { FaHandPointRight } from 'react-icons/fa';
